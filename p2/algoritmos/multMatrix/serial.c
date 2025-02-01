@@ -52,3 +52,12 @@ int main() {
 
     return 0;
 }
+
+// Comando para compilar:
+// Serial:
+// gcc-13 -I. serial.c libpcc.c -o serial -fopenmp -lm
+// ./serial
+
+// Paralelo:
+// gcc-13 -I. paralelo.c libpcc.c -o paralelo -fopenmp -lm
+// ./paralelo
