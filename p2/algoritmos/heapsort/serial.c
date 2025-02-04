@@ -3,6 +3,12 @@
 #include <omp.h>
 #include "libppc.h"
 
+/**
+ * Maintains the heap property by comparing a node with its children and swapping if needed
+ * @param arr Array to heapify
+ * @param n Size of the array
+ * @param i Index of the root node to heapify
+ */
 void heapify(int arr[], int n, int i) {
     int largest = i;
     int left = 2 * i + 1;
@@ -23,6 +29,11 @@ void heapify(int arr[], int n, int i) {
     }
 }
 
+/**
+ * Implements the heapsort algorithm to sort an array in ascending order
+ * @param arr Array to be sorted
+ * @param n Size of the array
+ */
 void my_heapsort(int arr[], int n) {
     for (int i = n / 2 - 1; i >= 0; i--)
         heapify(arr, n, i);
@@ -36,12 +47,21 @@ void my_heapsort(int arr[], int n) {
     }
 }
 
+/**
+ * Prints the elements of an array
+ * @param arr Array to be printed
+ * @param n Size of the array
+ */
 void printArray(int arr[], int n) {
     for (int i = 0; i < n; i++)
         printf("%d ", arr[i]);
     printf("\n");
 }
 
+/**
+ * Main function that demonstrates the serial implementation of heapsort
+ * Gets input size from user, generates random array, sorts it and measures execution time
+ */
 int main() {
     int n;
     printf("Digite a quantidade de numeros: ");

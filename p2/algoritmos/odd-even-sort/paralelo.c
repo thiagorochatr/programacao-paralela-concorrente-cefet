@@ -4,12 +4,17 @@
 #include <omp.h>
 #include "libppc.h"
 
+/**
+ * Performs parallel odd-even sort on an array using OpenMP
+ * @param arr Array to be sorted
+ * @param n Size of the array
+ */
 void odd_even_sort(int *arr, int n) {
     bool sorted = false;
     while (!sorted) {
         sorted = true;
         
-        // Fase Impar
+        // Odd phase - compare and swap elements at odd indices
         #pragma omp parallel for shared(arr, sorted)
         for (int i = 1; i < n - 1; i += 2) {
             if (arr[i] > arr[i + 1]) {
@@ -20,7 +25,7 @@ void odd_even_sort(int *arr, int n) {
             }
         }
         
-        // Fase Par
+        // Even phase - compare and swap elements at even indices
         #pragma omp parallel for shared(arr, sorted)
         for (int i = 0; i < n - 1; i += 2) {
             if (arr[i] > arr[i + 1]) {
@@ -33,6 +38,12 @@ void odd_even_sort(int *arr, int n) {
     }
 }
 
+/**
+ * Main function that demonstrates parallel odd-even sort
+ * Gets array size from user, generates random array,
+ * performs sorting and measures execution time
+ * Uses OpenMP for parallel execution
+ */
 int main() {
     int n;
     printf("Digite a quantidade de numeros: ");

@@ -1,6 +1,8 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
-        "libppc.h": "c"
+        "libppc.h": "c",
+        "stdlib.h": "c",
+        "stdio.h": "c"
     }
 }

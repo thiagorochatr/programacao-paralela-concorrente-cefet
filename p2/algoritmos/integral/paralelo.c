@@ -3,10 +3,20 @@
 #include <omp.h>
 #include "libppc.h"
 
+/**
+ * Truncates a floating point number to its integer part
+ * @param x Number to truncate
+ * @return Truncated value as double
+ */
 double trunc_func(double x) {
     return (double)((int)x);
 }
 
+/**
+ * Calculates a series sum based on powers and gamma function
+ * @param x Input value
+ * @return Sum of the series
+ */
 double f(double x) {
     int trunc_x = (int)trunc_func(x);
     double sum = 0.0;
@@ -16,14 +26,32 @@ double f(double x) {
     return sum;
 }
 
+/**
+ * Calculates a quadratic function
+ * @param x Input value
+ * @return Result of quadratic function
+ */
 double g(double x) {
     return (1.0 / 3.0) * x * x + 4 * x + 2;
 }
 
+/**
+ * Calculates product of sine and cosine
+ * @param x Input value in radians
+ * @return sin(πx) * cos(πx)
+ */
 double h(double x) {
     return sin(M_PI * x) * cos(M_PI * x);
 }
 
+/**
+ * Implements a parallel version of the trapezoidal rule for numerical integration
+ * Uses OpenMP to parallelize the computation across trapezoids
+ * @param a Lower bound of integration
+ * @param b Upper bound of integration
+ * @param n Number of trapezoids
+ * @return Approximate value of the integral
+ */
 double trapezoidal_rule(double a, double b, int n) {
     double step = (b - a) / n;
     double integral = 0.0;
@@ -38,6 +66,11 @@ double trapezoidal_rule(double a, double b, int n) {
     return integral;
 }
 
+/**
+ * Main function that demonstrates the parallel implementation of trapezoidal rule
+ * Gets number of trapezoids from user, calculates integral and measures execution time
+ * Uses OpenMP for parallel execution
+ */
 int main() {
     double a = 1.0, b = 20.0;
     int n;

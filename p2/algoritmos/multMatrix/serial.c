@@ -3,6 +3,15 @@
 #include <omp.h>
 #include "libppc.h"
 
+/**
+ * Performs matrix multiplication C = A * B
+ * @param A First input matrix
+ * @param B Second input matrix 
+ * @param C Output matrix to store the result
+ * @param rowsA Number of rows in matrix A
+ * @param colsA Number of columns in matrix A
+ * @param colsB Number of columns in matrix B
+ */
 void matrixMultiply(double *A, double *B, double *C, int rowsA, int colsA, int colsB) {
     for (int i = 0; i < rowsA; i++) {
         for (int j = 0; j < colsB; j++) {
@@ -14,6 +23,11 @@ void matrixMultiply(double *A, double *B, double *C, int rowsA, int colsA, int c
     }
 }
 
+/**
+ * Main function that demonstrates serial matrix multiplication
+ * Gets matrix dimensions from user, generates random matrices,
+ * performs multiplication and measures execution time
+ */
 int main() {
     long int rowsA, colsA, rowsB, colsB;
 
@@ -52,12 +66,3 @@ int main() {
 
     return 0;
 }
-
-// Comando para compilar:
-// Serial:
-// gcc-13 -I. serial.c libpcc.c -o serial -fopenmp -lm
-// ./serial
-
-// Paralelo:
-// gcc-13 -I. paralelo.c libpcc.c -o paralelo -fopenmp -lm
-// ./paralelo

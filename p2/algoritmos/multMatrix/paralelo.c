@@ -3,6 +3,15 @@
 #include <omp.h>
 #include "libppc.h"
 
+/**
+ * Performs parallel matrix multiplication C = A * B using OpenMP
+ * @param A First input matrix
+ * @param B Second input matrix 
+ * @param C Output matrix to store the result
+ * @param rowsA Number of rows in matrix A
+ * @param colsA Number of columns in matrix A
+ * @param colsB Number of columns in matrix B
+ */
 void matrixMultiplyParallel(double *A, double *B, double *C, int rowsA, int colsA, int colsB) {
     #pragma omp parallel for collapse(2)
     for (int i = 0; i < rowsA; i++) {
@@ -15,6 +24,12 @@ void matrixMultiplyParallel(double *A, double *B, double *C, int rowsA, int cols
     }
 }
 
+/**
+ * Main function that demonstrates parallel matrix multiplication
+ * Gets matrix dimensions from user, generates random matrices,
+ * performs multiplication and measures execution time
+ * Uses OpenMP for parallel execution
+ */
 int main() {
     long int rowsA, colsA, rowsB, colsB;
 

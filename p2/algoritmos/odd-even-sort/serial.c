@@ -4,12 +4,17 @@
 #include <omp.h>
 #include "libppc.h"
 
+/**
+ * Performs serial odd-even sort on an array
+ * @param arr Array to be sorted
+ * @param n Size of the array
+ */
 void odd_even_sort(int *arr, int n) {
     bool sorted = false;
     while (!sorted) {
         sorted = true;
         
-        // Fase Ímpar
+        // Odd phase - compare and swap elements at odd indices
         for (int i = 1; i < n - 1; i += 2) {
             if (arr[i] > arr[i + 1]) {
                 int temp = arr[i];
@@ -19,7 +24,7 @@ void odd_even_sort(int *arr, int n) {
             }
         }
         
-        // Fase Par
+        // Even phase - compare and swap elements at even indices
         for (int i = 0; i < n - 1; i += 2) {
             if (arr[i] > arr[i + 1]) {
                 int temp = arr[i];
@@ -31,6 +36,11 @@ void odd_even_sort(int *arr, int n) {
     }
 }
 
+/**
+ * Main function that demonstrates serial odd-even sort
+ * Gets array size from user, generates random array,
+ * performs sorting and measures execution time
+ */
 int main() {
     int n;
     printf("Digite a quantidade de números: ");
